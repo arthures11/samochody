@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>samochody</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="assets/css/Responsive-Form-Contact-Form-Clean.css">
+    <link rel="stylesheet" href="assets/css/Responsive-Form.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand bg-light navigation-clean">
+        <div class="container"><a class="navbar-brand" href="#">samochody</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"></button>
+            <div class="collapse navbar-collapse" id="navcol-1"></div>
+        </div>
+    </nav>
+    <header class="text-center text-white masthead" style="background:url('assets/img/bg-masthead.jpg')no-repeat center center;background-size:cover;">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto position-relative">
+                    <h1 class="mb-5">znajdź swój wymarzony samochód!</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="text-center bg-light features-icons">
+        <div class="container">
+            <div>
+                <form action="/submit" method="post">
+                    <div class="form-group mb-3">
+                        <div id="formdiv">
+                            <div class="row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
+                                <div class="col-md-8 offset-md-1">
+                                    <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Jak duża jest twoja rodzina?</strong></p>
+                                </div>
+                                <div class="col-md-10 offset-md-1"><select class="form-select" style="font-family:Roboto, sans-serif;" name="family">
+                                        <optgroup label="Rodzina">
+                                            <option value="1">samotnik</option>
+                                            <option value="24">2-4</option>
+                                            <option value="5">5+</option>
+                                        </optgroup>
+                                    </select></div>
+                                <div class="col">
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group"><input type="radio" id="btnradio1" class="btn-check" name="btnradio" autocomplete="off" value="1"><label class="form-label btn btn-outline-primary" for="btnradio1">mało ważne</label><input type="radio" id="btnradio2" class="btn-check" name="btnradio" autocomplete="off" value="2"><label class="form-label btn btn-outline-primary" for="btnradio2">średnio ważne</label><input type="radio" id="btnradio3" class="btn-check" name="btnradio" autocomplete="off" value="3"><label class="form-label btn btn-outline-primary" for="btnradio3">bardzo ważne</label></div>
+                                    <div class="row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
+                                        <div class="col-md-8 offset-md-1">
+                                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Jaki cenisz sobie typ samochodu?</strong></p>
+                                        </div>
+                                        <div class="col-md-10 offset-md-1"><select class="form-select" style="font-family:Roboto, sans-serif;" name="cartype">
+                                                <optgroup label="Typ samochodu">
+                                                    <option value="fast">szybki</option>
+                                                    <option value="big">duży</option>
+                                                    <option value="sport">sportowy</option>
+                                                    <option value="wygoda">wygodny</option>
+                                                </optgroup>
+                                            </select></div>
+                                        <div class="col">
+                                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"><input type="radio" id="btnradio-1" class="btn-check" name="btnradio2" autocomplete="off" value="1"><label class="form-label btn btn-outline-primary" for="btnradio-1">mało ważne</label><input type="radio" id="btnradio-2" class="btn-check" name="btnradio2" autocomplete="off" value="2"><label class="form-label btn btn-outline-primary" for="btnradio-2">średnio ważne</label><input type="radio" id="btnradio-3" class="btn-check" name="btnradio2" autocomplete="off" value="3"><label class="form-label btn btn-outline-primary" for="btnradio-3">bardzo ważne</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
+                                        <div class="col-md-8 offset-md-1">
+                                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Cel zakupu</strong></p>
+                                        </div>
+                                        <div class="col-md-10 offset-md-1"><select class="form-select" style="font-family:Roboto, sans-serif;" name="cel">
+                                                <optgroup label="Cel">
+                                                    <option value="long">długie trasy</option>
+                                                    <option value="average">przeciętne użytkowanie</option>
+                                                    <option value="short">rzadkie jazdy</option>
+                                                </optgroup>
+                                            </select></div>
+                                        <div class="col">
+                                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"><input type="radio" id="btnradio-4" class="btn-check" name="btnradio3" autocomplete="off" value="1"><label class="form-label btn btn-outline-primary" for="btnradio-4">mało ważne</label><input type="radio" id="btnradio-5" class="btn-check" name="btnradio3" autocomplete="off" value="2"><label class="form-label btn btn-outline-primary" for="btnradio-5">średnio ważne</label><input type="radio" id="btnradio-6" class="btn-check" name="btnradio3" autocomplete="off" value="3"><label class="form-label btn btn-outline-primary" for="btnradio-6">bardzo ważne</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
+                                        <div class="col-md-8 offset-md-1">
+                                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Jaki cenisz sobie bagażnik?</strong></p>
+                                        </div>
+                                        <div class="col-md-10 offset-md-1"><select class="form-select" style="font-family:Roboto, sans-serif;" name="bagaznik">
+                                                <optgroup label="Bagaż">
+                                                    <option value="smallbag">mały</option>
+                                                    <option value="averagebag">średni</option>
+                                                    <option value="bigbag">duży</option>
+                                                </optgroup>
+                                            </select></div>
+                                        <div class="col">
+                                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"><input type="radio" id="btnradio-7" class="btn-check" name="btnradio4" autocomplete="off" value="1"><label class="form-label btn btn-outline-primary" for="btnradio-7">mało ważne</label><input type="radio" id="btnradio-8" class="btn-check" name="btnradio4" autocomplete="off" value="2"><label class="form-label btn btn-outline-primary" for="btnradio-8">średnio ważne</label><input type="radio" id="btnradio-9" class="btn-check" name="btnradio4" autocomplete="off" value="3"><label class="form-label btn btn-outline-primary" for="btnradio-9">bardzo ważne</label></div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-right:0px;margin-left:0px;padding-top:24px;margin-top:-16px;">
+                                        <div class="col-md-8 offset-md-1">
+                                            <p style="margin-left:2%;font-family:Roboto, sans-serif;font-size:24px;"><strong>Preferencja skrzyni biegów</strong></p>
+                                        </div>
+                                        <div class="col-md-10 offset-md-1"><select class="form-select" style="font-family:Roboto, sans-serif;" name="skrzynia">
+                                                <optgroup label="Skrzynia biegów">
+                                                    <option value="manual">manualna</option>
+                                                    <option value="auto">automatyczna</option>
+                                                </optgroup>
+                                            </select></div>
+                                        <div class="col">
+                                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group"><input type="radio" id="btnradio-10" class="btn-check" name="btnradio5" autocomplete="off" value="1"><label class="form-label btn btn-outline-primary" for="btnradio-10">mało ważne</label><input type="radio" id="btnradio-11" class="btn-check" name="btnradio5" autocomplete="off" value="2"><label class="form-label btn btn-outline-primary" for="btnradio-11">średnio ważne</label><input type="radio" id="btnradio-12" class="btn-check" name="btnradio5" autocomplete="off" value="3"><label class="form-label btn btn-outline-primary" for="btnradio-12">bardzo ważne</label></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="margin-right:0px;margin-left:0px;padding-top:24px;">
+                                <div class="col-12 col-md-4 offset-md-4"><button class="btn btn-light btn-lg" style="font-family:Roboto, sans-serif;" type="reset">reset</button><button class="btn btn-light btn-lg" style="margin-left:16px;" type="submit">wyślij</button></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section class="showcase"></section>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
