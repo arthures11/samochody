@@ -1,10 +1,18 @@
 package com.bryja.samochody.controllers;
 
-import com.bryja.samochody.agenci.AgentKlienta1;
+import com.bryja.samochody.agenci.AgentKlienta;
 import com.bryja.samochody.agenci.AgentSprzedawcy1;
+import com.bryja.samochody.agenci.AgentSprzedawcy2;
+import com.bryja.samochody.klasy.BazaWynikow;
 import com.bryja.samochody.klasy.Samochody;
-import com.bryja.samochody.repos.SamochodyRepository;
-import org.springframework.context.annotation.Bean;
+import com.bryja.samochody.klasy.SamochodySklep2;
+import com.bryja.samochody.repos.BazaWynikowRepository;
+import com.bryja.samochody.repos.Sklep1Repository;
+import com.bryja.samochody.repos.Sklep2Repository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -17,9 +25,6 @@ import java.util.*;
 
 @RestController
 public class AgentController {
-    public AgentController(SamochodyRepository samochodyRepository) {
-        this.samochodyRepository = samochodyRepository;
-    }
 
     @PostMapping("/submit")
     public RedirectView submit(@RequestParam String family, @RequestParam String cartype, @RequestParam String cel, @RequestParam String bagaznik, @RequestParam String skrzynia , @RequestParam String btnradio, @RequestParam String btnradio2, @RequestParam String btnradio3, @RequestParam String btnradio4, @RequestParam String btnradio5) {
@@ -46,33 +51,50 @@ public class AgentController {
     }
 
 
-    private final SamochodyRepository samochodyRepository;
+    @Autowired
+    Sklep1Repository ofertaSklepu1;
+
+    @Autowired
+    Sklep2Repository ofertaSklepu2;
+    @Autowired
+    BazaWynikowRepository bazaWynikowRepository;
     @GetMapping("/cars")
-    public List<Samochody> getCar(@RequestParam("rodzina") String rodzina,
-                               @RequestParam("rodzinaprio") String rodzinaprio,
-                               @RequestParam("typauta") String typauta,
-                               @RequestParam("typautaprio") String typautaprio,
-                               @RequestParam("cel") String cel,
-                               @RequestParam("celprio") String celprio,
-                               @RequestParam("bagaznik") String bagaznik,
-                               @RequestParam("bagaznikprio") String bagaznikprio,
-                               @RequestParam("skrzynia") String skrzynia,
-                               @RequestParam("skrzyniaprio") String skrzyniaprio){
+    public List<Object> getCar(@RequestParam("rodzina") String rodzina,
+                                        @RequestParam("rodzinaprio") String rodzinaprio,
+                                        @RequestParam("typauta") String typauta,
+                                        @RequestParam("typautaprio") String typautaprio,
+                                        @RequestParam("cel") String cel,
+                                        @RequestParam("celprio") String celprio,
+                                        @RequestParam("bagaznik") String bagaznik,
+                                        @RequestParam("bagaznikprio") String bagaznikprio,
+                                        @RequestParam("skrzynia") String skrzynia,
+                                        @RequestParam("skrzyniaprio") String skrzyniaprio){
 
 
 
-        List<Samochody> samochodyList = samochodyRepository.findAll();
-        List<AgentKlienta1> agenciKlienta = new ArrayList<>();
-        agenciKlienta.add(new AgentKlienta1( "Agent1",samochodyList, rodzina,rodzinaprio, typauta,typautaprio, cel,celprio, bagaznik,bagaznikprio, skrzynia,skrzyniaprio));
 
-        List<AgentSprzedawcy1> agenciSprzedawcy = new ArrayList<>();
-        agenciSprzedawcy.add(new AgentSprzedawcy1("Sprzedawca1"));
-
+        List<Samochody> samochodySklepu1 = ofertaSklepu1.findAll();
+        List<SamochodySklep2> samochodySklepu2 = ofertaSklepu2.findAll();
+        AgentSprzedawcy1 sklep1 = new AgentSprzedawcy1(samochodySklepu1);
+        AgentSprzedawcy2 sklep2 = new AgentSprzedawcy2(samochodySklepu2);
 
 
-        List<Samochody>wyn = new ArrayList<>();
+
+
+        List<AgentKlienta> agenciKlienta = new ArrayList<>();
+        agenciKlienta.add(new AgentKlienta(sklep1, "Agent1", rodzina,rodzinaprio, typauta,typautaprio, cel,celprio, bagaznik,bagaznikprio, skrzynia,skrzyniaprio));
+        agenciKlienta.add(new AgentKlienta(sklep2,"Agent2", rodzina,rodzinaprio, typauta,typautaprio, cel,celprio, bagaznik,bagaznikprio, skrzynia,skrzyniaprio));
+        agenciKlienta.add(new AgentKlienta(sklep2, "Agent3", rodzina,rodzinaprio, typauta,typautaprio, cel,celprio, bagaznik,bagaznikprio, skrzynia,skrzyniaprio));
+
+
+
+
+
+
+
+    List<Object> wyn = new ArrayList<>();
         List<Thread> watkiKlientow = new ArrayList<>();
-        for (AgentKlienta1 agentKlienta : agenciKlienta) {
+        for (AgentKlienta agentKlienta : agenciKlienta) {
             Thread thread = new Thread(agentKlienta);
             watkiKlientow.add(thread);
             thread.start();
@@ -81,7 +103,26 @@ public class AgentController {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            wyn = agentKlienta.wynikiProp;
+
+            if(agentKlienta.wynikiSklepu2.isEmpty()){
+                wyn.add(agentKlienta.wynikiSklepu1);
+//                for(int i=0;i<agentKlienta.wynikiSklepu1.size();i++){
+//                    System.out.println(agentKlienta.wynikiSklepu1.get(i).name);
+//                }
+            }
+            else{
+                wyn.add(agentKlienta.wynikiSklepu2);
+            }
+        }
+        List<Object> nef = new ArrayList<>(wyn);
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        try {
+            String json = mapper.writeValueAsString(nef);
+            BazaWynikow ba = new BazaWynikow(json);
+            bazaWynikowRepository.save(ba);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
         }
 
 

@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-public class Rodzina {
+public class Rodzina  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")Long id;
     public int samotnik;

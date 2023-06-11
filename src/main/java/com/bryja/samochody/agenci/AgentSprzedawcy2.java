@@ -1,27 +1,28 @@
 package com.bryja.samochody.agenci;
 import com.bryja.samochody.klasy.Samochody;
+import com.bryja.samochody.klasy.SamochodySklep2;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AgentSprzedawcy1 {
+public class AgentSprzedawcy2 {
 
 
-    List<Samochody> oferta = new ArrayList<>();
-    public AgentSprzedawcy1(List<Samochody> samochody) {
+    List<SamochodySklep2> oferta = new ArrayList<>();
+    public AgentSprzedawcy2(List<SamochodySklep2> samochody) {
         this.oferta = samochody;
     }
 
 
-    public List<Samochody> propozycja(String rodzina, String typauta, String cel,
+    public List<SamochodySklep2> propozycja(String rodzina, String typauta, String cel,
                                       String bagaznik, String skrzynia, int ilosc_wynikow){
 
-        List<Map.Entry<Samochody, Integer>> scoredSamochody = new ArrayList<>();
+        List<Map.Entry<SamochodySklep2, Integer>> scoredSamochody = new ArrayList<>();
 
 
 
 
-        for (Samochody samochod : oferta) {
+        for (SamochodySklep2 samochod : oferta) {
             int score = 0;
 
             switch (rodzina) {
@@ -62,7 +63,7 @@ public class AgentSprzedawcy1 {
 
 
         int numberOfResults = ilosc_wynikow;
-        List<Samochody> topSamochody = scoredSamochody.stream()
+        List<SamochodySklep2> topSamochody = scoredSamochody.stream()
                 .limit(numberOfResults)
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());

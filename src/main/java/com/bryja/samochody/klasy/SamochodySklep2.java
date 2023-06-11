@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 
-public class Samochody {
+public class SamochodySklep2 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")Long id;
 
@@ -35,10 +35,10 @@ public class Samochody {
         this.price = price;
     }
 
-    public Samochody() {
+    public SamochodySklep2() {
     }
 
-    public Samochody(String name, int price, Rodzina rodzina, TypSamochodu typSamochodu, Jazdy jazdy, Bagaz bagaz, Biegi biegi) {
+    public SamochodySklep2(String name, int price, Rodzina rodzina, TypSamochodu typSamochodu, Jazdy jazdy, Bagaz bagaz, Biegi biegi) {
         this.name = name;
         this.price=price;
         this.rodzina = rodzina;

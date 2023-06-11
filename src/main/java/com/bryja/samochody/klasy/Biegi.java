@@ -5,9 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 
-public class Biegi {
+public class Biegi  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "id")Long id;
     public int manual;
